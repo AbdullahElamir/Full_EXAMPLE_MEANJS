@@ -50,8 +50,8 @@ module.exports = {
     callbackURL: '/api/auth/google/callback'
   },
   linkedin: {
-    clientID: process.env.LINKEDIN_ID || 'APP_ID',
-    clientSecret: process.env.LINKEDIN_SECRET || 'APP_SECRET',
+    clientID: process.env.LINKEDIN_ID || '776dil7d2xwxkz',
+    clientSecret: process.env.LINKEDIN_SECRET || 'Jwx4QDpbv0EP2WbY',
     callbackURL: '/api/auth/linkedin/callback'
   },
   github: {
