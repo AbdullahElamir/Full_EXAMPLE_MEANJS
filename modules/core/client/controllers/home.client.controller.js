@@ -9,32 +9,32 @@
     var vm = this;
     $scope.alerts = [{
       total: 1800,
-      description: 'TOTAL CUSTOMERS',
+      description: 'الطلبة المسجلين',
       ngClass: 'plan-name-bronze'
     },
     {
-      total: 8300,
-      description: 'UPCOMING EVENTS',
+      total: 2,
+      description: 'الأحداث القــادمة ',
       ngClass: 'plan-name-gold'
     },
     {
       total: 500,
-      description: 'REFFARLS TO MODERAT',
+      description: 'الكليات والمناهج',
       ngClass: 'plan-name-silver'
     },
     {
       total: 1800,
-      description: 'Half Coustomers',
+      description: 'البرامج التعليمية',
       ngClass: 'plan-name-gold'
     },
     {
       total: 23232,
-      description: 'Emails Sent',
+      description: 'تنزيلات للمواد',
       ngClass: 'plan-name-silver'
     },
     {
-      total: 8989,
-      description: 'Follow Up',
+      total: 898999,
+      description: 'المتابعين',
       ngClass: 'plan-name-bronze'
     }
     ];
