@@ -1,0 +1,95 @@
+#!/bin/bash
+
+#check cf
+if ! cf_loc="$(type -p "cf")" || [ -z "/usr/bin/cf" ]; then
+	echo "The Cloud Foundry CLI was not found on your system. Install CLI from https://github.com/cloudfoundry/cli/releases before you install the Bluemix CLI."
+else
+	# Check minimum cf cli version. Must be 6.11
+	cfVersion=`cf -v 2>&1 | grep "cf"`
+	if [ -n "$cfVersion" ]; then
+		firstversionnumber=`echo "$cfVersion" | sed 's/^[^0-9]*\([0-9][0-9]*\)\..*$/\1/'`
+		secondversionnumber=`echo "$cfVersion" | sed 's/^[^0-9]*[0-9][0-9]*\.\([0-9][0-9]*\).*$/\1/'`
+		echo "The Cloud Foundry CLI version $firstversionnumber.$secondversionnumber is already installed."
+		if [ $firstversionnumber -lt 6 ] || [ $firstversionnumber -eq 6 -a $secondversionnumber -lt 11 ]; then
+			echo "Cloud Foundry CLI version 6.11 or later is required for Bluemix CLI."
+			echo "Please upgrade your CF CLI."
+		fi
+	else
+		echo "Unknown Cloud Foundry CLI version."
+	fi	
+fi
+
+echo "Copying files ..."
+
+if [ ! -d "/usr/local/Bluemix" ]; then 
+	mkdir /usr/local/Bluemix
+fi
+
+if [ ! -d "/usr/local/Bluemix/bin" ]; then 
+	mkdir /usr/local/Bluemix/bin
+fi
+
+if [ ! -d "/usr/local/Bluemix/bx" ]; then 
+	mkdir /usr/local/Bluemix/bx
+fi
+
+cp -f bin/bluemix /usr/local/Bluemix/bin/
+cp -f bx/bash_autocomplete /usr/local/Bluemix/bx/
+cp -f bx/zsh_autocomplete /usr/local/Bluemix/bx/
+
+ln -sf /usr/local/Bluemix/bin/bluemix /usr/local/Bluemix/bin/bx
+
+chown -R root:root /usr/local/Bluemix
+chmod -R 755 /usr/local/Bluemix
+
+function updateConfig()
+{
+	_file_path=$1
+	_key=$2
+	_content=$3
+
+	if [ -f $_file_path ] && [ -z "`cat $_file_path | grep $_key`" ]; then
+		chmod 666 $_file_path
+		echo "### Added by the Bluemix CLI" >> $_file_path
+		echo $_content >> $_file_path
+		chmod 644 $_file_path
+	fi
+}
+
+function updatePath()
+{
+	_file_path=$1
+	updateConfig $_file_path "/usr/local/Bluemix/bin" "PATH=\$PATH:/usr/local/Bluemix/bin"
+}
+
+function updateAutocomplete()
+{
+	_file_path=$1
+	_script=$2
+	updateConfig $_file_path "/usr/local/Bluemix/bx/$2" "source /usr/local/Bluemix/bx/$2"
+}
+
+# add Bluemix CLI executable into PATH
+# login shell for bash
+updatePath "/etc/profile"
+# non-login shell for bash
+updatePath "/etc/bash.bashrc"
+# login and non-login shell for zsh
+updatePath "/etc/zsh/zshenv"
+
+
+# add autocomplete to bash
+if [ ! -d "/etc/bash_completion.d" ]; then 
+	# login shell
+	updateAutocomplete "/etc/profile" "bash_autocomplete"
+	# non-login shell
+	updateAutocomplete "/etc/bash.bashrc" "bash_autocomplete"
+else
+	cp -f bx/bash_autocomplete /etc/bash_completion.d/bluemix_cli_autocomplete
+	chown root:root /etc/bash_completion.d/bluemix_cli_autocomplete
+	chmod 644 /etc/bash_completion.d/bluemix_cli_autocomplete
+fi
+
+# add autocomplete to zsh
+updateAutocomplete "/etc/zsh/zshrc" "zsh_autocomplete"
+
