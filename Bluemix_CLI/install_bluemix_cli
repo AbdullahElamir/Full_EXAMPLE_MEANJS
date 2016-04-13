@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set -e
+
+echo "Superuser privileges are required to run this script."
+
+readonly DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+sudo $DIR/update_global_config
+
+echo "The Bluemix CLI installed successfully. To get started, open a new Linux terminal and enter \"bluemix help\", or enter \"bx help\" as short name."
