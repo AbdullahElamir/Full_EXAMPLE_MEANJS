@@ -5,8 +5,9 @@
     .module('core')
       .controller('HomeController', HomeController);
 
-  function HomeController($scope) {
+  function HomeController($scope, $state, Authentication, menuService) {
     var vm = this;
+    vm.authentication = Authentication;
     $scope.alerts = [{
       total: 1800,
       description: 'الطلبة المسجلين',
