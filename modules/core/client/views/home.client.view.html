@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
 </head>
-<body>
+<div ng-hide="vm.authentication.user">
+    <body>
     <header class="business-header">
         <div class="container">
             <div class="row">
@@ -12,12 +13,9 @@
             </div>
         </div>
     </header>
-
     <!-- Page Content -->
     <div class="container">
-
         <hr>
-
         <div class="row">
             <div class="col-sm-8">
                 <h2>What We Do</h2>
@@ -87,13 +85,13 @@
     <script src="js/bootstrap.min.js"></script>
 
 </body>
-
+</div>
 </html>
 
 
 <section>
 <!doctype html>
-<html ><head></head><body><div class="container" >
+<html ><head></head><body><div class="container" ng-show="vm.authentication.user">
     <div class="pricing-table pricing-three-column row" >
         <div class="plan col-sm-4 col-lg-4" ng-repeat="i in alerts">
           <div  ng-class="i.ngClass">
