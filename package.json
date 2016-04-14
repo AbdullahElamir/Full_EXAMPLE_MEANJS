@@ -20,6 +20,9 @@
     "postinstall": "bower install --config.interactive=false"
   },
   "dependencies": {
+    "express":"*",
+    "body-parser":"*",
+    "bcrypt": "^0.8.5",
     "acl": "~0.4.9",
     "async": "~1.5.2",
     "body-parser": "~1.15.0",
