@@ -2,8 +2,8 @@
     'use strict';
 
     angular
-        .module('tables')
-        .factory('TablesForm', factory);
+        .module('colleges')
+        .factory('CollegesForm', factory);
 
     function factory() {
 

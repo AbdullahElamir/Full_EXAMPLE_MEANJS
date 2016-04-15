@@ -1,29 +1,29 @@
-<section data-ng-controller="TablesController">
+<section data-ng-controller="CollegesController">
     <div class="page-header">
-        <h1>Tables</h1>
+        <h1>Colleges</h1>
     </div>
 
     <div class="pull-right">
-      <a type="button" class="btn btn-success" href="/#!/tables/create">
-        <i class="glyphicon glyphicon-open"></i> New Table
+      <a type="button" class="btn btn-success" href="/#!/colleges/create">
+        <i class="glyphicon glyphicon-open"></i> New College
       </a>
     </div>
 
     <div>
         <table ng-table="tableParams" show-filter="true">
-            <tr ng-repeat="table in $data">
-                <td data-title="'Name'" sortable="'name'" filter="{ 'name': 'text' }">{{table.name}}</td>
+            <tr ng-repeat="college in $data">
+                <td data-title="'Name'" sortable="'name'" filter="{ 'name': 'text' }">{{college.name}}</td>
                 <td>
                     <div class="table-actions">
                 <td>
                    <div class="table-actions">
-                        <a class="btn btn-default" title="View" href="/#!/tables/{{table._id}}">
+                        <a class="btn btn-default" title="View" href="/#!/colleges/{{college._id}}">
                             <span class="glyphicon glyphicon-eye-open"></span>
                         </a>
-                        <a class="btn btn-default" title="Edit" href="/#!/tables/{{table._id}}/edit">
+                        <a class="btn btn-default" title="Edit" href="/#!/colleges/{{college._id}}/edit">
                             <span class="glyphicon glyphicon-edit"></span>
                         </a>
-                        <a class="btn btn-danger" title="Remove" ng-really-message="Are you sure ?" ng-really-click="remove(table)" item="table">
+                        <a class="btn btn-danger" title="Remove" ng-really-message="Are you sure ?" ng-really-click="remove(college)" item="college">
                   				<span class="glyphicon glyphicon-remove-circle"></span>
                   			</a>
                     </div>
