@@ -1,0 +1,28 @@
+<section data-ng-controller="TablesController" data-ng-init="toViewTable()">
+	<div class="page-header">
+		<h1 data-ng-bind="table.name"></h1>
+	</div>
+
+	<div class="col-md-12">
+
+		<form novalidate>
+			<formly-form model="table" fields="formFields">
+			</formly-form>
+		</form>
+
+		<hr/>
+		<div data-ng-show="((authentication.user) && (authentication.user._id == table.user._id))">
+			<a class="btn btn-success" href="/#!/tables/{{table._id}}/edit">
+				<i class="glyphicon glyphicon-edit"></i> Edit
+			</a>
+			<a class="btn btn-danger" title="Remove" ng-really-message="Are you sure ?" ng-really-click="remove()" item="table">
+				<i class="glyphicon glyphicon-remove-circle"></i> Delete
+			</a>
+			<a class="btn btn-primary" href="/#!/tables">
+				<i class="glyphicon glyphicon-list"></i> List Tables
+			</a>
+		</div>
+
+	</div>
+
+</section>

@@ -47,6 +47,7 @@ module.exports = {
     quotes: [1, 'single'],
     'wrap-iife': [2, 'outside'],
     'vars-on-top': 0
+    
   },
   env: {
     node: true,
