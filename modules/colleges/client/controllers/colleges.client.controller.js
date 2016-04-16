@@ -1,69 +1,52 @@
-'use strict';
+(function () {
+  'use strict';
 
-// Colleges controller
-angular.module('colleges').controller('CollegesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Colleges', 'TableSettings', 'CollegesForm',
-	function($scope, $stateParams, $location, Authentication, Colleges, TableSettings, CollegesForm ) {
-		$scope.authentication = Authentication;
-		$scope.tableParams = TableSettings.getParams(Colleges);
-		$scope.college = {};
+  angular
+    .module('colleges')
+    .controller('CollegesController', CollegesController);
 
-		$scope.setFormFields = function(disabled) {
-			$scope.formFields = CollegesForm.getFormFields(disabled);
-		};
+  CollegesController.$inject = ['$scope', '$state', 'collegeResolve', '$window', 'Authentication'];
 
+  function CollegesController($scope, $state, college, $window, Authentication) {
+    var vm = this;
 
-		// Create new College
-		$scope.create = function() {
-			var college = new Colleges($scope.college);
+    vm.college = college;
+    vm.authentication = Authentication;
+    vm.error = null;
+    vm.form = {};
+    vm.remove = remove;
+    vm.save = save;
 
-			// Redirect after save
-			college.$save(function(response) {
-				$location.path('colleges/' + response._id);
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
-			});
-		};
+    // Remove existing College
+    function remove() {
+      if ($window.confirm('Are you sure you want to delete?')) {
+        vm.college.$remove($state.go('colleges.list'));
+      }
+    }
 
-		// Remove existing College
-		$scope.remove = function(college) {
+    // Save College
+    function save(isValid) {
+      if (!isValid) {
+        $scope.$broadcast('show-errors-check-validity', 'vm.form.collegeForm');
+        return false;
+      }
 
-			if ( college ) {
-				college = Colleges.get({collegeId:college._id}, function() {
-					college.$remove();
-					$scope.tableParams.reload();
-				});
+      // TODO: move create/update logic to service
+      if (vm.college._id) {
+        vm.college.$update(successCallback, errorCallback);
+      } else {
+        vm.college.$save(successCallback, errorCallback);
+      }
 
-			} else {
-				$scope.college.$remove(function() {
-					$location.path('colleges');
-				});
-			}
+      function successCallback(res) {
+        $state.go('colleges.view', {
+          collegeId: res._id
+        });
+      }
 
-		};
-
-		// Update existing College
-		$scope.update = function() {
-			var college = $scope.college;
-
-			college.$update(function() {
-				$location.path('colleges/' + college._id);
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
-			});
-		};
-
-
-
-		$scope.toViewCollege = function() {
-			$scope.college = Colleges.get( {collegeId: $stateParams.collegeId} );
-			$scope.setFormFields(true);
-		};
-
-		$scope.toEditCollege = function() {
-			$scope.college = Colleges.get( {collegeId: $stateParams.collegeId} );
-			$scope.setFormFields(false);
-		};
-
-	}
-
-]);
+      function errorCallback(res) {
+        vm.error = res.data.message;
+      }
+    }
+  }
+}());

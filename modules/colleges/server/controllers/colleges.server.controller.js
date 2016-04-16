@@ -1,4 +1,5 @@
 'use strict';
+
 /**
  * Module dependencies
  */
@@ -6,13 +7,14 @@ var path = require('path'),
   mongoose = require('mongoose'),
   College = mongoose.model('College'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
+
 /**
  * Create an college
  */
 exports.create = function (req, res) {
-  console.log(req.body);
   var college = new College(req.body);
   college.user = req.user;
+
   college.save(function (err) {
     if (err) {
       return res.status(400).send({

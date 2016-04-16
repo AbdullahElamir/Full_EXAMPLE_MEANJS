@@ -1,13 +1,19 @@
-'use strict';
+(function () {
+  'use strict';
 
-//Colleges service used to communicate Colleges REST endpoints
-angular.module('colleges').factory('Colleges', ['$resource',
-	function($resource) {
-		return $resource('colleges/:collegeId', { collegeId: '@_id'
-		}, {
-			update: {
-				method: 'PUT'
-			}
-		});
-	}
-]);
+  angular
+    .module('colleges.services')
+    .factory('CollegesService', CollegesService);
+
+  CollegesService.$inject = ['$resource'];
+
+  function CollegesService($resource) {
+    return $resource('api/colleges/:collegeId', {
+      collegeId: '@_id'
+    }, {
+      update: {
+        method: 'PUT'
+      }
+    });
+  }
+}());
