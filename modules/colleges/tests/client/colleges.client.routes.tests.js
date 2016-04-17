@@ -108,8 +108,6 @@
         });
       });
 
-
-
       describe('Create Route', function () {
         var createstate,
           CollegesController,

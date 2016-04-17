@@ -9,7 +9,7 @@
 
   function menuConfig(menuService) {
     menuService.addMenuItem('topbar', {
-      title: 'Colleges',
+      title: 'تسجيل الكليات',
       state: 'colleges',
       type: 'dropdown',
       roles: ['*']
@@ -17,19 +17,19 @@
 
     // Add the dropdown list item
     menuService.addSubMenuItem('topbar', 'colleges', {
-      title: 'List Colleges',
+      title: 'قائمة الكليات',
       state: 'colleges.list'
     });
 
     // Add the dropdown create item
     menuService.addSubMenuItem('topbar', 'colleges', {
-      title: 'Create College',
+      title: 'إضافة كلية',
       state: 'colleges.create',
       roles: ['user']
     });
 
     menuService.addSubMenuItem('topbar', 'colleges', {
-      title: 'show College',
+      title: 'عرض تجريبي للكليات',
       state: 'colleges.show',
       roles: ['user']
     });
