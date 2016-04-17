@@ -27,5 +27,11 @@
       state: 'colleges.create',
       roles: ['user']
     });
+
+    menuService.addSubMenuItem('topbar', 'colleges', {
+      title: 'show College',
+      state: 'colleges.show',
+      roles: ['user']
+    });
   }
 }());

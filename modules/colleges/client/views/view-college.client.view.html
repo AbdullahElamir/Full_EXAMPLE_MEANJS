@@ -1,6 +1,6 @@
 <section>
   <div class="page-header">
-    <h1 ng-bind="vm.college.title"></h1>
+    <h1 ng-bind="vm.college.name"></h1>
   </div>
   <div class="pull-right" ng-show="vm.college.isCurrentUserOwner">
     <a class="btn btn-primary" ui-sref="colleges.edit({ collegeId: vm.college._id })">
@@ -19,5 +19,5 @@
       <span ng-if="!vm.college.user">Deleted User</span>
     </em>
   </small>
-  <p class="lead" ng-bind="vm.college.content"></p>
+  <p class="lead" ng-bind="vm.college.history"></p>
 </section>

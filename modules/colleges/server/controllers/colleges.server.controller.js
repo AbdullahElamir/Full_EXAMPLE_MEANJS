@@ -12,6 +12,7 @@ var path = require('path'),
  * Create an college
  */
 exports.create = function (req, res) {
+  console.log(req.body);
   var college = new College(req.body);
   college.user = req.user;
 
@@ -44,10 +45,12 @@ exports.read = function (req, res) {
  * Update an college
  */
 exports.update = function (req, res) {
+  console.log(req.body);
   var college = req.college;
-
-  college.title = req.body.title;
-  college.content = req.body.content;
+  college.name = req.body.name;
+  college.history = req.body.history;
+  college.student_union.url = req.body.student_union.url;
+  college.student_union.phone = req.body.student_union.phone;
 
   college.save(function (err) {
     if (err) {

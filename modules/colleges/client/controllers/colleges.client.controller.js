@@ -9,14 +9,12 @@
 
   function CollegesController($scope, $state, college, $window, Authentication) {
     var vm = this;
-
     vm.college = college;
     vm.authentication = Authentication;
     vm.error = null;
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
-
     // Remove existing College
     function remove() {
       if ($window.confirm('Are you sure you want to delete?')) {
@@ -30,7 +28,6 @@
         $scope.$broadcast('show-errors-check-validity', 'vm.form.collegeForm');
         return false;
       }
-
       // TODO: move create/update logic to service
       if (vm.college._id) {
         vm.college.$update(successCallback, errorCallback);

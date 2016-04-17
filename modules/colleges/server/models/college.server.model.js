@@ -14,16 +14,31 @@ var CollegeSchema = new Schema({
     type: Date,
     default: Date.now
   },
-  title: {
+  name: {
     type: String,
     default: '',
     trim: true,
-    required: 'Title cannot be blank'
+    required: 'name cannot be blank'
   },
-  content: {
+  history: {
     type: String,
     default: '',
-    trim: true
+    trim: true,
+    required: 'history cannot be blank'
+  },
+  student_union: {
+    url_page: {
+      type: String,
+      default: '',
+      trim: true,
+      required: 'url_page cannot be blank'
+    },
+    phone: {
+      type: String,
+      default: '',
+      trim: true,
+      required: 'phone cannot be blank'
+    }
   },
   user: {
     type: Schema.ObjectId,

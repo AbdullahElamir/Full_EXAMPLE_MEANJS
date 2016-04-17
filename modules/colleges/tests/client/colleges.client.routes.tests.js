@@ -64,7 +64,7 @@
 
         beforeEach(inject(function ($controller, $state, $templateCache) {
           viewstate = $state.get('colleges.view');
-          $templateCache.put('modules/colleges/client/views/view-college.client.view.html', '');
+          $templateCache.put('modules/colleges/client/views/table-college.clinet.view.html', '');
 
           // create mock college
           mockCollege = new CollegesService({
@@ -104,9 +104,11 @@
         });
 
         it('Should have templateUrl', function () {
-          expect(viewstate.templateUrl).toBe('modules/colleges/client/views/view-college.client.view.html');
+          expect(viewstate.templateUrl).toBe('modules/colleges/client/views/table-college.clinet.view.html');
         });
       });
+
+
 
       describe('Create Route', function () {
         var createstate,

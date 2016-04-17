@@ -22,6 +22,11 @@
         data: {
           pageTitle: 'Colleges List'
         }
+      }).state('colleges.show', {
+        url: '/show',
+        templateUrl: 'modules/colleges/client/views/table-college.clinet.view.html',
+        controller: 'CollegesController',
+        controllerAs: 'vm',
       })
       .state('colleges.create', {
         url: '/create',

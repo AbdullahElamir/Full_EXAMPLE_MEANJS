@@ -11,8 +11,8 @@
         <span ng-if="college.user" ng-bind="college.user.displayName"></span>
         <span ng-if="!college.user">Deleted User</span>
       </small>
-      <h4 class="list-group-item-heading" ng-bind="college.title"></h4>
-      <p class="list-group-item-text" ng-bind="college.content"></p>
+      <h4 class="list-group-item-heading" ng-bind="college.name"></h4>
+      <p class="list-group-item-text" ng-bind="college.history"></p>
     </a>
   </div>
   <div class="alert alert-warning text-center" ng-if="vm.colleges.$resolved && !vm.colleges.length">
