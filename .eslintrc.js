@@ -3,6 +3,7 @@ module.exports = {
     'airbnb/legacy'
   ],
   rules: {
+    "no-console":0,
     camelcase: 0,
     'comma-dangle': [2, 'never'],
     'comma-spacing': [2, { before: false, after: true }],
@@ -47,6 +48,7 @@ module.exports = {
     quotes: [1, 'single'],
     'wrap-iife': [2, 'outside'],
     'vars-on-top': 0
+    
   },
   env: {
     node: true,

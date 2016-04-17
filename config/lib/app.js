@@ -11,7 +11,6 @@ var config = require('../config'),
 
 function seedDB() {
   if (config.seedDB && config.seedDB.seed) {
-    console.log(chalk.bold.red('Warning:  Database seeding is turned on'));
     seed.start();
   }
 }

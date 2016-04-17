@@ -1,0 +1,60 @@
+<section>
+  <div class="page-header">
+    <h1>{{vm.college._id ? 'Edit College' : 'إضافة كلية جديدة'}}</h1>
+  </div>
+  <div class="col-md-12">
+    <form name="vm.form.collegeForm" class="form-horizontal" ng-submit="vm.save(vm.form.collegeForm.$valid)" novalidate>
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="title">اسم الكلية</label>
+          <input name="name" type="text" ng-model="vm.college.name" id="name" class="form-control" placeholder="Name" required>
+          <div ng-messages="vm.form.collegeForm.name.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">اسم الكلية مطلوب.</p>
+          </div>
+        </div>
+
+
+
+         <div class="form-group" show-errors>
+          <label class="control-label" for="url">عنوان صفحة اتحاد الطلبة</label>
+          <input name="url_page" type="text" ng-model="vm.college.student_union.url_page" id="student_union.url_page" class="form-control" placeholder="url_page" required>
+          <div ng-messages="vm.form.collegeForm.student_union.url_page.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">اسم الكلية مطلوب.</p>
+          </div>
+        </div>
+
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="phone">رقم الهاتف</label>
+          <input name="phone" type="text" ng-model="vm.college.student_union.phone" id="student_union.phone" class="form-control" placeholder="PHONE" required>
+          <div ng-messages="vm.form.collegeForm.student_union.phone.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">اسم الكلية مطلوب.</p>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <div class="form-group">
+          <label class="control-label" for="content">تاريخ الكلية</label>
+          <textarea name="content" data-ng-model="vm.college.history" id="history" class="form-control" cols="30" rows="10" placeholder="Content"></textarea>
+        </div>
+
+
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-default">{{vm.college._id ? 'Update' : 'Create'}}</button>
+        </div>
+        <div ng-show="vm.error" class="text-danger">
+          <strong ng-bind="vm.error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>
+

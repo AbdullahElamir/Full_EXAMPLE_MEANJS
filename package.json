@@ -8,7 +8,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/meanjs/mean.git"
+    "url": "git+https://github.com/meanjs/mean.git"
   },
   "engines": {
     "node": ">=0.12.0",
@@ -20,9 +20,11 @@
     "postinstall": "bower install --config.interactive=false"
   },
   "dependencies": {
+    "express": "~4.13.4",
+    "body-parser": "~1.15.0",
+    "bcrypt": "^0.8.5",
     "acl": "~0.4.9",
     "async": "~1.5.2",
-    "body-parser": "~1.15.0",
     "bower": "~1.7.7",
     "cfenv": "~1.0.3",
     "chalk": "~1.1.1",
@@ -32,7 +34,6 @@
     "consolidate": "~0.14.0",
     "cookie-parser": "~1.4.1",
     "crypto": "0.0.3",
-    "express": "~4.13.4",
     "express-session": "~1.13.0",
     "file-stream-rotator": "~0.0.6",
     "forever": "~0.15.1",
@@ -124,5 +125,13 @@
     "run-sequence": "~1.1.5",
     "should": "~8.2.2",
     "supertest": "~1.2.0"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/meanjs/mean/issues"
+  },
+  "homepage": "https://github.com/meanjs/mean#readme",
+  "main": ".eslintrc.js",
+  "keywords": [
+    "abdullah"
+  ]
 }

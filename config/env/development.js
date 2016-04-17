@@ -4,7 +4,7 @@ var defaultEnvConfig = require('./default');
 
 module.exports = {
   db: {
-    uri: 'mongodb://root:102030@aws-us-east-1-portal.14.dblayer.com:11156/MEAN',
+    uri: 'mongodb://localhost:27017/myproject',
     options: {
       user: '',
       pass: ''
