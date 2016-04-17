@@ -4,7 +4,7 @@ var defaultEnvConfig = require('./default');
 
 module.exports = {
   db: {
-    uri: 'mongodb://localhost:27017/myproject',
+    uri: 'https://github.com/AbdullahElamir/mean',
     options: {
       user: '',
       pass: ''
